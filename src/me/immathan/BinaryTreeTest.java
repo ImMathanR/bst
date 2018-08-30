@@ -18,6 +18,7 @@ public class BinaryTreeTest {
     @org.junit.Test
     public void insert() {
         Assert.assertEquals(binaryTree.root.data, 10);
+        Assert.assertEquals(binaryTree.root.left.data, 4);
         Assert.assertEquals(binaryTree.root.left.right.left.data, 7);
     }
 

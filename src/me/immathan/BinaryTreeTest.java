@@ -1,18 +1,23 @@
 package me.immathan;
 
 import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.logging.Logger;
 
 public class BinaryTreeTest {
+
+    Logger logger = Logger.getLogger(BinaryTreeTest.class.getName());
 
     BinaryTree binaryTree = new BinaryTree();
 
     @org.junit.Before
     public void setUp() throws Exception {
-        binaryTree.insert(10);
-        binaryTree.insert(20);
-        binaryTree.insert(4);
-        binaryTree.insert(8);
-        binaryTree.insert(7);
+        binaryTree.insert(new Node(10));
+        binaryTree.insert(new Node(20));
+        binaryTree.insert(new Node(4));
+        binaryTree.insert(new Node(8));
+        binaryTree.insert(new Node(7));
     }
 
     @org.junit.Test
@@ -24,9 +29,41 @@ public class BinaryTreeTest {
 
     @org.junit.Test
     public void searchData() {
-        Assert.assertTrue(binaryTree.searchData(7));
-        Assert.assertFalse(binaryTree.searchData(30));
-        Assert.assertTrue(binaryTree.searchData(20));
-        Assert.assertFalse(binaryTree.searchData(11));
+        Assert.assertTrue(binaryTree.search(7));
+        Assert.assertFalse(binaryTree.search(30));
+        Assert.assertTrue(binaryTree.search(20));
+        Assert.assertFalse(binaryTree.search(11));
     }
+
+    @Test
+    public void min() {
+        Assert.assertEquals(binaryTree.min().data, 4);
+        Assert.assertNotEquals(binaryTree.min().data, 7);
+    }
+
+    @Test
+    public void max() {
+        Assert.assertEquals(binaryTree.max().data, 20);
+        Assert.assertNotEquals(binaryTree.max().data, 7);
+    }
+
+    @Test
+    public void inOrder() {
+        logger.info("InOrder");
+        binaryTree.inOrder();
+    }
+
+    @Test
+    public void preOrder() {
+        logger.info("PreOrder");
+        binaryTree.preOrder();
+    }
+
+    @Test
+    public void postOrder() {
+        logger.info("PostOrder");
+        binaryTree.postOrder();
+    }
+
+
 }

@@ -1,12 +1,8 @@
 package me.immathan;
 
-import java.util.logging.Logger;
-
 public class BinaryTree {
 
     Node root;
-
-    Logger logger = Logger.getLogger(BinaryTree.class.getName());
 
     public BinaryTree() {
 
@@ -44,12 +40,8 @@ public class BinaryTree {
         }
     }
 
-    public boolean remove(Node node) {
-        if(root == null) {
-            return false;
-        }
-
-        return removeNode(root, node.data);
+    public void remove(Node node) {
+        removeNode(root, node.data);
     }
 
     public void inOrder() {
@@ -66,7 +58,7 @@ public class BinaryTree {
 
     private void preOrder(Node node) {
         if(node != null) {
-            logger.info("\n" + node.data);
+            System.out.print(" " + node.data);
             inOrder(node.left);
             inOrder(node.right);
         }
@@ -76,30 +68,41 @@ public class BinaryTree {
         if(node != null) {
             inOrder(node.left);
             inOrder(node.right);
-            logger.info("\n" + node.data);
+            System.out.print(" " + node.data);
         }
     }
 
     private void inOrder(Node node) {
         if(node != null) {
             inOrder(node.left);
-            logger.info("\n" + node.data);
+            System.out.print(" " + node.data);
             inOrder(node.right);
         }
     }
 
     //private void transplant()
 
-    private boolean removeNode(Node node, int data) {
+    private Node removeNode(Node node, int data) {
         if(node == null) {
-            return false;
+            return null;
         }
 
-        if(node.left == null) {
+        if(data < node.data) {
+            node.left = removeNode(node.left, data);
+        } else if(data > node.data) {
+            node.right = removeNode(node.right, data);
+        } else {
+            if(node.left == null) {
+                return node.right;
+            } else if(node.right == null) {
+                return node.left;
+            }
 
+            node.data = minNode(node.right).data;
+            node.right = removeNode(node.right, node.data);
         }
 
-        return false;
+        return node;
     }
 
     /**

@@ -3,11 +3,7 @@ package me.immathan;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.logging.Logger;
-
 public class BinaryTreeTest {
-
-    Logger logger = Logger.getLogger(BinaryTreeTest.class.getName());
 
     BinaryTree binaryTree = new BinaryTree();
 
@@ -49,21 +45,27 @@ public class BinaryTreeTest {
 
     @Test
     public void inOrder() {
-        logger.info("InOrder");
         binaryTree.inOrder();
     }
 
     @Test
     public void preOrder() {
-        logger.info("PreOrder");
         binaryTree.preOrder();
     }
 
     @Test
     public void postOrder() {
-        logger.info("PostOrder");
         binaryTree.postOrder();
     }
 
+    @Test
+    public void remove() {
+        binaryTree.remove(new Node(4));
+        inOrder();
+        Assert.assertEquals(binaryTree.min().data, 7);
+        binaryTree.remove(new Node(7));
+        inOrder();
+        Assert.assertEquals(binaryTree.min().data, 8);
+    }
 
 }

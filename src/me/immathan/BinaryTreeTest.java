@@ -68,4 +68,30 @@ public class BinaryTreeTest {
         Assert.assertEquals(binaryTree.min().data, 8);
     }
 
+    @Test
+    public void predecessor() {
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.insert(new Node(10));
+        binaryTree.insert(new Node(20));
+        binaryTree.insert(new Node(4));
+        binaryTree.insert(new Node(8));
+        binaryTree.insert(new Node(7));
+
+        Assert.assertEquals(binaryTree.predecessor(8), 7);
+        Assert.assertEquals(binaryTree.predecessor(20), 10);
+    }
+
+    @Test
+    public void successor() {
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.insert(new Node(10));
+        binaryTree.insert(new Node(20));
+        binaryTree.insert(new Node(4));
+        binaryTree.insert(new Node(8));
+        binaryTree.insert(new Node(7));
+
+        Assert.assertEquals(binaryTree.successor(4), 7);
+        Assert.assertEquals(binaryTree.predecessor(8), 7);
+    }
+
 }

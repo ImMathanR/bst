@@ -24,6 +24,7 @@ public class BinaryTree {
                 if (temp.left != null) {
                     temp = temp.left;
                 } else {
+                    dataNode.parent = temp;
                     temp.left = dataNode;
                     temp = dataNode;
                 }
@@ -31,6 +32,7 @@ public class BinaryTree {
                 if (temp.right != null) {
                     temp = temp.right;
                 } else {
+                    dataNode.parent = temp;
                     temp.right = dataNode;
                     temp = dataNode;
                 }
@@ -54,6 +56,16 @@ public class BinaryTree {
 
     public void postOrder() {
         postOrder(root);
+    }
+
+    public int predecessor(int value) {
+        Node node = searchNode(root, value);
+        return predecessor(node).data;
+    }
+
+    public int successor(int value) {
+        Node node = searchNode(root, value);
+        return successor(node).data;
     }
 
     private void preOrder(Node node) {
@@ -80,7 +92,33 @@ public class BinaryTree {
         }
     }
 
-    //private void transplant()
+    private Node predecessor(Node node) {
+        if(node.left != null) {
+            return maxNode(node.left);
+        }
+
+        Node parent = node.parent;
+        while (parent != null && node == parent.left) {
+            node = parent;
+            parent = parent.parent;
+        }
+
+        return parent;
+    }
+
+    private Node successor(Node node) {
+        if(node.right != null) {
+            return minNode(node.right);
+        }
+
+        Node parent = node.parent;
+        while (parent != null && node == parent.right) {
+            node = parent;
+            parent = parent.parent;
+        }
+
+        return parent;
+    }
 
     private Node removeNode(Node node, int data) {
         if(node == null) {

@@ -14,6 +14,8 @@ public class BinaryTreeTest {
         binaryTree.insert(new Node(4));
         binaryTree.insert(new Node(8));
         binaryTree.insert(new Node(7));
+        binaryTree.insert(new Node(30));
+        binaryTree.insert(new Node(25));
     }
 
     @org.junit.Test
